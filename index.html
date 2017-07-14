@@ -14,32 +14,62 @@
     <script>
 
       function initMap() {
-        var markersData = [
-  {
-      lat: 40.6386333,
-      lng: -8.745,
-      name: "Camping Praia da Barra",
-      address1:"Rua Diogo Cão, 125",
-      address2: "Praia da Barra",
-      postalCode: "3830-772 Gafanha da Nazaré" // don’t insert comma in the last item of each marker
-   },
-   {
-      lat: 40.59955,
-      lng: -8.7498167,
-      name: "Camping Costa Nova",
-      address1:"Quinta dos Patos, n.º 2",
-      address2: "Praia da Costa Nova",
-      postalCode: "3830-453 Gafanha da Encarnação" // don’t insert comma in the last item of each marker
-   },
-   {
-      lat: 40.6247167,
-      lng: -8.7129167,
-      name: "Camping Gafanha da Nazaré",
-      address1:"Rua dos Balneários do Complexo Desportivo",
-      address2: "Gafanha da Nazaré",
-      postalCode: "3830-225 Gafanha da Nazaré" // don’t insert comma in the last item of each marker
-   } // don’t insert comma in last item
-];
+  
+  var chevron = {
+    info: '<strong>Chipotle on Broadway</strong><br>\
+          5224 N Broadway St<br> Chicago, IL 60640<br>\
+          <a href="https://goo.gl/maps/jKNEDz4SyyH2">Get Directions</a>',
+    lat: 41.976816,
+    long: -87.659916
+  };
+
+  var shell = {
+    info: '<strong>Chipotle on Belmont</strong><br>\
+          1025 W Belmont Ave<br> Chicago, IL 60657<br>\
+          <a href="https://goo.gl/maps/PHfsWTvgKa92">Get Directions</a>',
+    lat: 41.939670,
+    long: -87.655167
+  };
+
+  var arco = {
+    info: '<strong>Chipotle on Sheridan</strong><br>\r\
+          6600 N Sheridan Rd<br> Chicago, IL 60626<br>\
+          <a href="https://goo.gl/maps/QGUrqZPsYp92">Get Directions</a>',
+    lat: 42.002707,
+    long: -87.661236
+  };
+
+  var locations = [
+      [chevron.info, chevron.lat, chevron.long, 0],
+      [shell.info, shell.lat, shell.long, 1],
+      [arco.info, arco.lat, arco.long, 2],
+    ];
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 13,
+    center: new google.maps.LatLng(37.368809, -121.867614),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+  });
+
+  var infowindow = new google.maps.InfoWindow({});
+
+  var marker, i;
+
+  for (i = 0; i < locations.length; i++) {
+    marker = new google.maps.Marker({
+      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+      map: map
+    });
+
+    google.maps.event.addListener(marker, 'click', (function (marker, i) {
+      return function () {
+        infowindow.setContent(locations[i][0]);
+        infowindow.open(map, marker);
+      }
+    })(marker, i));
+  }
+}
+
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK0gWkhoxu6vWNInTv57pV4M3pE3fRGMg&callback=initMap">
