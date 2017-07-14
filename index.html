@@ -15,7 +15,6 @@
 
       function initMap() {
         var myLatLng = {lat: 37.368597, lng:  -121.867484};
-        var gasStations = {lat: 37.3743565, lng: -121.8817264}
         var map = new google.maps.Map(document.getElementById('map'), {
           zoom: 4,
           center: myLatLng,
@@ -25,6 +24,20 @@
           map: map
         });
       }
+      function initMap() {
+  var gasStations = {lat: 37.3683107, lng: -121.8732184};
+
+  var map = new google.maps.Map(document.getElementById('map'), {
+    
+  });
+
+  var marker = new google.maps.Marker({
+    position: myLatLng,
+    map: map,
+    title: 'Hello World!'
+  });
+}
+
     </script>
     <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDK0gWkhoxu6vWNInTv57pV4M3pE3fRGMg&callback=initMap">
