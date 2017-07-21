@@ -12,7 +12,7 @@ function getData() {
 function loadJSON(callback) {
   var req = new XMLHttpRequest();
   req.overrideMimeType("application/json");
-  req.open('GET', 'https://99a023a1.ngrok.io/locations/', true);
+  req.open('GET', 'https://99a023a1.ngrok.io/locations', true);
   req.onreadystatechange = function() {
     if (req.readyState == 4 && req.status == "200") {
 
