@@ -1,35 +1,18 @@
 
-function initMap() {
+function initMap(data) {
 
-  var chevron = {
-    info: '<strong>Chipotle on Broadway</strong><br>\
-          5224 N Broadway St<br> Chicago, IL 60640<br>\
-          <a href="https://goo.gl/maps/jKNEDz4SyyH2">Get Directions</a>',
-    lat: 37.3682772,
-    long: -121.8994837
+  console.log('data from init map', data)
+  data = JSON.parse(data);
+
+  var locations = [];
+
+  for(var i = 0; i < data.length; i++) {
+    var loc = [data[i].info, data[i].lat, data[i].long, i];
+
+    debugger;
+
+    locations.push(loc);
   };
-
-  var shell = {
-    info: '<strong>Chipotle on Belmont</strong><br>\
-          1025 W Belmont Ave<br> Chicago, IL 60657<br>\
-          <a href="https://goo.gl/maps/PHfsWTvgKa92">Get Directions</a>',
-    lat: 37.3684831,
-    long: -121.8994837
-  };
-
-  var arco = {
-    info: '<strong>Chipotle on Sheridan</strong><br>\r\
-          6600 N Sheridan Rd<br> Chicago, IL 60626<br>\
-          <a href="https://goo.gl/maps/QGUrqZPsYp92">Get Directions</a>',
-    lat: 37.3685551,
-    long: -121.8694927
-  };
-
-  var locations = [
-      [chevron.info, chevron.lat, chevron.long, 0],
-      [shell.info, shell.lat, shell.long, 1],
-      [arco.info, arco.lat, arco.long, 2],
-    ];
 
   var map = new google.maps.Map(document.getElementById('map'), {
     zoom: 13,
